@@ -3,9 +3,17 @@
 one:
   commenter: MyString
   body: MyText
+<<<<<<< HEAD
   article: one
+=======
+  post: one
+>>>>>>> 4802ee3 (Added comments functionality)
 
 two:
   commenter: MyString
   body: MyText
+<<<<<<< HEAD
   article: two
+=======
+  post: two
+>>>>>>> 4802ee3 (Added comments functionality)
