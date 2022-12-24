@@ -6,4 +6,7 @@
     <li>
         <%= link_to "Edit", edit_post_path(@post) %>
     </li>
+    <li>
+        <%= button_to "Destroy", @post, method: :delete %>
+    </li>
 </ul>
