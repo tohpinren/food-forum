@@ -72,3 +72,5 @@ group :test do
 end
 
 gem "react-rails", "~> 2.6"
+
+gem 'devise'
