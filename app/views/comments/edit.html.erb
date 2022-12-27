@@ -1,4 +1,6 @@
-<%= form_with model: [ @post, @post.comments.build ] do |form| %>
+<h1>Edit Comment</h1>
+
+<%= form_with model: [ @post, @comment ] do |form| %>
   <div>
     <%= form.label :commenter %><br>
     <%= form.text_field :commenter %>
