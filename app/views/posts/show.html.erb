@@ -4,14 +4,10 @@
 
 <p><%= @post.body %></p>
 
-<ul>
-    <li>
-        <%= link_to "Edit Post", edit_post_path(@post) %>
-    </li>
-    <li>
-        <%= button_to "Delete Post", @post, method: :delete %>
-    </li>
-</ul>
+<% if current_user == @post.user %>
+    <%= link_to "Edit Post", edit_post_path(@post) %>
+    <%= button_to "Delete Post", @post, method: :delete %>
+<% end %>
 
 <h2>Comments</h2>
 <%= render @post.comments %>
