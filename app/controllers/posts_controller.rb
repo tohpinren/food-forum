@@ -1,4 +1,15 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
+
+  def authorize_user
+    @post = Post.find(params[:id])
+    unless current_user == @post.user
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to @post
+    end
+  end  
+
   def index
     @posts = Post.all
   end
@@ -24,23 +35,37 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if current_user != @post.user
+      flash[:alert] = "You are not authorized to edit this post."
+      redirect_to @post
+    end
   end
 
   def update
     @post = Post.find(params[:id])
 
-    if @post.update(post_params)
-      redirect_to @post
+    if current_user == @post.user
+      if @post.update(post_params)
+        redirect_to @post
+      else
+        render :edit, status: :unprocessable_entity
+      end
     else
-      render :edit, status: :unprocessable_entity
+      flash[:alert] = "You are not authorized to update this post."
+      redirect_to @post
     end
   end
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
 
-    redirect_to root_path, status: :see_other
+    if current_user == @post.user
+      @post.destroy
+      redirect_to root_path, status: :see_other
+    else
+      flash[:alert] = "You are not authorized to delete this post."
+      redirect_to @post
+    end
   end
 
   private
