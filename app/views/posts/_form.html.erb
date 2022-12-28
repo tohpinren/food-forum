@@ -20,6 +20,10 @@
   </div>
 
   <div>
+    <%= form.select :category_id, options_from_collection_for_select(@categories, "id", "name"), prompt: "Select a category" %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

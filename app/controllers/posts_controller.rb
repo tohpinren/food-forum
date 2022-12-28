@@ -19,11 +19,13 @@ class PostsController < ApplicationController
   end
 
   def new
+    @categories = Category.all
     @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
+    @post.category = Category.find(params[:post][:category_id])
     @post.user_id = current_user.id
 
     if @post.save

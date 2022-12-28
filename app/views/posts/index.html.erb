@@ -17,6 +17,8 @@
   <% @posts.each do |post| %>
     <li>
         <%= link_to post.title, post %>
+        [<%= post.category.name %>]
+        [Created by <%= post.user.username %>]
     </li>
   <% end %>
 </ul>
