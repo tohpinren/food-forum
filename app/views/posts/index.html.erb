@@ -1,4 +1,4 @@
-<h1>Food Web Forum</h1>
+<%= react_component("Header", {}, {prerender: true}) %>
 
 <% if user_signed_in? %>
  <div> Welcome <%= current_user.username %> </div> 
@@ -22,5 +22,3 @@
     </li>
   <% end %>
 </ul>
-
-<%= react_component("HelloWorld", { greeting: "Hello from react-rails." }, {prerender: true}) %>
