@@ -37,6 +37,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @categories = Category.all
     if current_user != @post.user
       flash[:alert] = "You are not authorized to edit this post."
       redirect_to @post
@@ -45,6 +46,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    @post.category = Category.find(params[:post][:category_id])
 
     if current_user == @post.user
       if @post.update(post_params)
